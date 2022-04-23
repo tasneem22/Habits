@@ -57,6 +57,16 @@ class UserDetailViewController: UIViewController {
         dataSource = createDataSource()
         collectionView.dataSource = dataSource
         collectionView.collectionViewLayout = createLayout()
+        ImageRequest(imageID: user.id).send { result in
+            switch result {
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self.profileImageView.image = image
+                }
+            default: break
+            }
+        }
+        view.backgroundColor = user.color?.uiColor ?? .white
 
         update()
     }

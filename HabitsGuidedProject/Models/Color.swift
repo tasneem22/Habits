@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftUI
 // MARK: - Color
 struct Color: Codable {
     let hue: Double
@@ -19,3 +19,10 @@ struct Color: Codable {
             case brightness = "b"
         }
 }
+extension Color {
+    var uiColor: UIColor {
+        return UIColor(hue: CGFloat(hue), saturation: CGFloat(saturation), brightness: CGFloat(brightness), alpha: 1)
+    }
+}
+
+extension Color: Hashable { }
